@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 批量定义别名，批量指定很简单，只要指定包名即可，之后程序会为包下的所有类都自动加上别名，
+    其定义别名的规范就是对应包装类的类名首字母变为小写 设置了这里就可以使用student和user了 -->
+    <typeAliases>
+        <package name="com.zjm.pojo"/>
+    </typeAliases>
+
+    <!-- 注册 mapper.xml 文件 -->
+    <mappers>
+        <mapper class="com.zjm.dao.StudentMapper"/>
+        <mapper class="com.zjm.dao.UserMapper"/>
+    </mappers>
+</configuration>

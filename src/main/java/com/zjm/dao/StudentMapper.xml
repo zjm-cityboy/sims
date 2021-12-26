@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+ namespace：必须有值，自定义的唯一字符串
+ 推荐使用：dao 接口的全限定名称
+-->
+<mapper namespace="com.zjm.dao.StudentMapper">
+    <!--加入学生信息-->
+    <insert id="addStudent">
+        insert into student
+        values (#{id}, #{name}, #{sex}, #{grade}, #{major})
+    </insert>
+
+    <!--根据id删除学生信息-->
+    <delete id="deleteStudentById">
+        delete
+        from student
+        where id = #{id}
+    </delete>
+
+    <!--更新学生信息-->
+    <update id="updateStudent" parameterType="student">
+        update student
+        set name=#{name},
+            sex=#{sex},
+            grade=#{grade},
+            major=#{major}
+        where id = #{id}
+    </update>
+    <!--根据id查找学生信息，用于更新学生信息-->
+    <select id="queryStudentById" resultType="student">
+        SELECT *
+        from student
+        where id = #{id}
+    </select>
+    <!--根据名字查找学生信息，用于查询-->
+    <select id="queryStudentByName" resultType="student">
+        SELECT *
+        from student
+        where name = #{name}
+    </select>
+
+    <!--查询全部学生信息，用于展示页面-->
+    <select id="queryAllStudent" resultType="student">
+        SELECT *
+        from student
+    </select>
+
+</mapper>

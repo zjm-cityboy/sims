@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 1.扫描web相关的注解 -->
+    <context:component-scan base-package="com.zjm.controller"/>
+
+    <!-- 配置SpringMVC -->
+    <!-- 2.开启 SpringMVC 注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 3.静态资源默认 servlet 配置,
+    它的意思就是没有映射到的URL交给默认的web容器中的servlet进行处理防止过滤静态资源-->
+    <mvc:default-servlet-handler/>
+
+    <!-- 4.配置 jsp 显示 ViewResolver 视图解析器，给名字加上前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.zjm.interceptor.CheckUserInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

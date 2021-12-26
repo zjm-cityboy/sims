@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+ namespace：必须有值，自定义的唯一字符串
+ 推荐使用：dao 接口的全限定名称
+-->
+<mapper namespace="com.zjm.dao.UserMapper">
+
+    <!--加入用户信息，用于注册-->
+    <insert id="addUser">
+        insert into user(username, password)
+        values (#{username}, #{password})
+    </insert>
+
+    <!--根据账号密码查找用户信息，用于登录验证-->
+    <select id="queryUserByUsernameAndPassword" resultType="user">
+        SELECT *
+        from user
+        where username = #{username}
+          and password = #{password}
+    </select>
+</mapper>

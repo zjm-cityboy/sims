@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 整合配置文件 导入 spring-dao.xml 和 spring-service.xml -->
+    <import resource="classpath:spring/spring-*.xml"/>
+    <!-- 整合配置文件 导入 spring-mvc.xml-->
+    <import resource="classpath:spring/springmvc.xml"/>
+
+</beans>
